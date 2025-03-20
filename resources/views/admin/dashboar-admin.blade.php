@@ -20,8 +20,8 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @forelse ($pesertas as $peserta)
                     <tr class="border-b hover:bg-gray-50">
-                        @forelse ($pesertas as $peserta)
                             <td class="px-4 py-2">{{ $peserta->nama }}</td>
                             <td class="px-4 py-2">{{ $peserta->no_sertif }}</td>
                             <td class="px-4 py-2">{{ $peserta->tema_pelatihan }}</td>
@@ -35,12 +35,12 @@
                                         Hapus
                                     </button>
                                 </form>
-                                
+
                             </td>
-                        @empty
-                        <p>Data Kosong</p>
-                        @endforelse
                     </tr>
+                    @empty
+                    <p>Data Kosong</p>
+                    @endforelse
                 </tbody>
             </table>
         </div>

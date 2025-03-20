@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: bebas;
+    src: url('/public/font/bebas.otf');
+}
+
+@font-face {
+    font-family: quicksand;
+    src: url('/public/font/quicksand.otf');
+}
+
+@font-face {
+    font-family: photograph;
+    src: url('/public//font/photograph.ttf');
+}

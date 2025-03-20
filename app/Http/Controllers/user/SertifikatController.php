@@ -24,4 +24,10 @@ class SertifikatController extends Controller
 
         return view('user.sertifikat', compact('peserta'));
     }
+
+    public function backSertifikat()
+    {
+        session()->forget('nama_peserta');
+        return redirect()->back();
+    }
 }

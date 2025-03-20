@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\DashboardAdmin;
+use App\Http\Controllers\admin\LoginAdminController;
 use App\Http\Controllers\admin\PesertaController;
 use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\ProfileController;
@@ -12,28 +13,46 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', [DashboardUser::class, 'index'])->name('home.user');
+//login admin
+Route::group(['middleware' => 'admin.guest'], function () {
+    Route::get('/admin/login', [LoginAdminController::class, 'index'])->name('admin.login');
+    Route::post('/admin/login/store', [LoginAdminController::class, 'loginAdmin'])->name('admin.store');
 
-// routes admin
-Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
+});
+Route::group(['middleware' => 'admin.auth'], function () {
+    Route::get('/admin/logout', [LoginAdminController::class, 'logoutAdmin'])->name('admin.logout');
 
-// tambah peserta
-Route::get('/tambah-peserta', [PesertaController::class, 'index'])->name('tambah.peserta');
-Route::post('/create/peserta', [PesertaController::class, 'store'])->name('create.peserta');
+    // routes admin
+    Route::get('/admin/dashboard', [DashboardAdmin::class, 'index'])->name('admin.dashboard');
 
-// edit peserta
-Route::get('/edit-peserta/{id}', [PesertaController::class, 'edit'])->name('edit.peserta');
-Route::post('/edite-peserta/save/{id}', [PesertaController::class, 'savechanges'])->name('edite.peserta');
-//delete peserta
-Route::delete('/delete-peserta/{id}', [PesertaController::class, 'delete'])->name('delete.peserta');
+    // tambah peserta
+    Route::get('/tambah-peserta', [PesertaController::class, 'index'])->name('tambah.peserta');
+    Route::post('/create/peserta', [PesertaController::class, 'store'])->name('create.peserta');
 
-//tambah ceo/pemberi sertif
-Route::get('/setting-sertifikat', [SettingController::class, 'index'])->name('tambah.setting');
-Route::post('/create/setting', [SettingController::class, 'save'])->name('create.setting');
+    // edit peserta
+    Route::get('/edit-peserta/{id}', [PesertaController::class, 'edit'])->name('edit.peserta');
+    Route::post('/edite-peserta/save/{id}', [PesertaController::class, 'savechanges'])->name('edite.peserta');
+    //delete peserta
+    Route::delete('/delete-peserta/{id}', [PesertaController::class, 'delete'])->name('delete.peserta');
 
-//form user search sertifikat
-Route::get('/sertifikar-saya', [SertifikatController::class, 'index'])->name('user.sertifikat');
-Route::post('/search-sertifikat', [DashboardUser::class, 'searchSertifikat'])->name('search.sertifikat');
+    //tambah ceo/pemberi sertif
+    Route::get('/setting-sertifikat', [SettingController::class, 'index'])->name('tambah.setting');
+    Route::post('/create/setting', [SettingController::class, 'save'])->name('create.setting');
+});
+
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', [DashboardUser::class, 'index'])->name('home.user');
+    
+    //form user search sertifikat
+    Route::get('/sertifikar-saya', [SertifikatController::class, 'index'])->name('user.sertifikat');
+    Route::post('/search-sertifikat', [DashboardUser::class, 'searchSertifikat'])->name('search.sertifikat');
+    Route::get('/back/sertifikat',[SertifikatController::class, 'backSertifikat'])->name('back.sertifikat');
+});
+
+
+
+
 
 
 
