@@ -14,6 +14,7 @@
     <nav class="flex flex-col mt-4" :class="open ? 'w-auto' : 'w-auto items-center'">
         <x-sidebar-link href="/admin/dashboard" icon="bi bi-house"  :active="request()->routeIs('admin.dashboard')">Data Peserta</x-sidebar-link>
         <x-sidebar-link href="/setting-sertifikat" icon="bi bi-gear"  :active="request()->routeIs('tambah.setting')">Setting</x-sidebar-link>
+        <x-sidebar-link href="/table/sertifikat" icon="bi bi-window"  :active="request()->routeIs('table.sertifikat')">Sertifikat</x-sidebar-link>
         <x-sidebar-link href="/admin/logout" icon="bi bi-box-arrow-left"  :active="request()->routeIs('admin.logout')">Logout</x-sidebar-link>
     </nav>
 </div>

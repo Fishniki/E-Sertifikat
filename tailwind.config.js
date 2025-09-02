@@ -15,7 +15,9 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
                 bebas: ['bebas', 'bebas'],
                 quicksand: ['quicksand', 'quicksand'],
-                photograph: ['photograph', 'photograph']
+                photograph: ['photograph', 'photograph'],
+                keyna: ['keyna', 'keyna'],
+                country: ['country', 'country']
             },
         },
     },

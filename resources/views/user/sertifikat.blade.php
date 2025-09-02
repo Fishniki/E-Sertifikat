@@ -33,7 +33,7 @@
             <!-- Detail Pelatihan -->
             <div class="mt-10">
                 <h1 class="text-lg font-extrabold uppercase font-quicksand">Dengan Bangga Di Berikan Kepada:</h1>
-                <p class="mt-5 text-5xl font-medium font-photograph">{{ $peserta->nama }}</p>
+                <p class="mt-5 text-5xl font-medium font-country">{{ $peserta->nama }}</p>
                 <hr class="border-t-2 mt-3 border-black">
             </div>
 

@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\DashboardAdmin;
 use App\Http\Controllers\admin\LoginAdminController;
 use App\Http\Controllers\admin\PesertaController;
+use App\Http\Controllers\admin\SertifikatCeoController;
 use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\user\DashboardUser;
@@ -33,11 +34,16 @@ Route::group(['middleware' => 'admin.auth'], function () {
     Route::get('/edit-peserta/{id}', [PesertaController::class, 'edit'])->name('edit.peserta');
     Route::post('/edite-peserta/save/{id}', [PesertaController::class, 'savechanges'])->name('edite.peserta');
     //delete peserta
-    Route::delete('/delete-peserta/{id}', [PesertaController::class, 'delete'])->name('delete.peserta');
+    Route::get('/delete-peserta/{id}', [PesertaController::class, 'delete'])->name('delete.peserta');
 
     //tambah ceo/pemberi sertif
     Route::get('/setting-sertifikat', [SettingController::class, 'index'])->name('tambah.setting');
     Route::post('/create/setting', [SettingController::class, 'save'])->name('create.setting');
+
+    //table ceo/sertifikar
+    Route::get('/table/sertifikat', [SertifikatCeoController::class, 'index'])->name('table.sertifikat');
+    Route::get('/edit-ceo/{id}', [SettingController::class, 'edit'])->name('edit.ceo');
+    Route::post('/ceo/save/{id}', [SettingController::class, 'savechanges'])->name('save.ceo');
 });
 
 

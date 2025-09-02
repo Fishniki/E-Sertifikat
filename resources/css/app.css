@@ -16,3 +16,13 @@
     font-family: photograph;
     src: url('/public//font/photograph.ttf');
 }
+
+@font-face {
+    font-family: keyna;
+    src: url('/public/font/Keyna.ttf');
+}
+
+@font-face {
+    font-family: country;
+    src: url('/public/font/Country.otf');
+}
